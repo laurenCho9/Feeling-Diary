@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-export default function DiaryEditor() {
+export default function DiaryEditor({ onCreate }) {
   const authorInput = useRef();
   const contentInput = useRef();
 
@@ -31,6 +31,7 @@ export default function DiaryEditor() {
       return;
     }
 
+    onCreate(diary.author, diary.content, diary.emotion);
     console.log(diary);
     alert("저장 성공!");
   };
