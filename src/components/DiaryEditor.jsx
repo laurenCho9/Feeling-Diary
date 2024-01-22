@@ -1,6 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
+import { DiaryDispatchContext } from "../App";
 
-export default function DiaryEditor({ onCreate }) {
+export default function DiaryEditor() {
+  const { onCreate } = useContext(DiaryDispatchContext);
+
   const authorInput = useRef();
   const contentInput = useRef();
 
