@@ -1,6 +1,10 @@
+import { memo, useEffect } from "react";
 import { useRef, useState } from "react";
 
-export default function DiaryEditor({ onCreate }) {
+function DiaryEditor({ onCreate }) {
+  useEffect(() => {
+    console.log("DiaryEditor 렌더");
+  });
   const authorInput = useRef();
   const contentInput = useRef();
 
@@ -72,3 +76,5 @@ export default function DiaryEditor({ onCreate }) {
     </div>
   );
 }
+
+export default memo(DiaryEditor);
