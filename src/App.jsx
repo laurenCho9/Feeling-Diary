@@ -1,35 +1,127 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { createContext, useReducer, useRef } from "react";
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import New from "./pages/New";
+import Edit from "./pages/Edit";
+import Diary from "./pages/Diary";
+
+const reducer = (state, action) => {
+  let newState = [];
+  switch (action.type) {
+    case "INIT": {
+      return action.data;
+    }
+    case "CREATE": {
+      newState = [action.data, ...state];
+      break;
+    }
+    case "REMOVE": {
+      newState = state.filter((it) => it.id !== action.targetId);
+      break;
+    }
+    case "EDIT": {
+      newState = state.map((it) =>
+        it.id === action.data.id ? { ...action.data } : it
+      );
+      break;
+    }
+    default:
+      return state;
+  }
+  return newState;
+};
+
+export const DiaryStateContext = createContext();
+export const DiaryDispatchContext = createContext();
+
+const dummyData = [
+  {
+    id: 1,
+    emotion: 1,
+    content: "오늘의 일기 1번",
+    date: 1706520318197,
+  },
+  {
+    id: 2,
+    emotion: 2,
+    content: "오늘의 일기 2번",
+    date: 1706520318198,
+  },
+  {
+    id: 3,
+    emotion: 3,
+    content: "오늘의 일기 3번",
+    date: 1706520318199,
+  },
+  {
+    id: 4,
+    emotion: 4,
+    content: "오늘의 일기 4번",
+    date: 1706520318200,
+  },
+  {
+    id: 5,
+    emotion: 5,
+    content: "오늘의 일기 5번",
+    date: 1706520318201,
+  },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [data, dispatch] = useReducer(reducer, dummyData);
+  console.log(new Date().getTime());
 
+  const dataId = useRef(0);
+  // CREATE
+  const onCreate = (date, content, emotion) => {
+    dispatch({
+      type: "CREATE",
+      data: {
+        id: dataId.current,
+        date: new Date(data).getTime(),
+        content,
+        emotion,
+      },
+    });
+    dataId.current += 1;
+  };
+  // REMOVE
+  const onRemove = (targetId) => {
+    dispatch({
+      type: "REMOVE",
+      targetId,
+    });
+  };
+  // EDIT
+  const onEdit = (targetId, date, content, emotion) => {
+    dispatch({
+      type: "EDIT",
+      data: {
+        id: targetId,
+        date: new Date(date).getTime(),
+        content,
+        emotion,
+      },
+    });
+  };
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <DiaryStateContext.Provider value={data}>
+      <DiaryDispatchContext.Provider
+        value={{ onCreate, onRemove, onEdit }}
+      ></DiaryDispatchContext.Provider>
+      <BrowserRouter>
+        <div className="app">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/new" element={<New />} />
+            <Route path="/edit" element={<Edit />} />
+            <Route path="/diary/:id" element={<Diary />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </DiaryStateContext.Provider>
+  );
 }
 
-export default App
+export default App;

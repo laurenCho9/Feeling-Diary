@@ -1,42 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Nanum+Pen+Script&display=swap");
+
+body {
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Nanum Pen Script", cursive;
+  /* font-family: 'Bagel Fat One', system-ui; */
+  min-height: 100vh;
+}
+
+@media (min-width: 650px) {
+  .app {
+    width: 640px;
+  }
+}
+@media (max-width: 650px) {
+  .app {
+    width: 90vw;
+  }
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  background-color: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app {
+  min-height: 100vh;
+  padding: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Button.jsx */
+
+.button {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  white-space: nowrap;
+  font-family: "Nanum Pen Script", cursive;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.button_default {
+  background-color: #ececec;
+  color: #000;
+}
+.button_negative {
+  background-color: #fd565f;
+  color: #fff;
+}
+.button_positive {
+  background-color: #64c964;
+  color: #fff;
 }
 
-.card {
-  padding: 2em;
+/* Header.jsx */
+header {
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e2e2;
 }
 
-.read-the-docs {
-  color: #888;
+header > div {
+  display: flex;
+}
+
+header .head-text {
+  width: 50%;
+  font-size: 25px;
+  justify-content: center;
+}
+
+header .head-btn-left,
+.head-btn-right {
+  width: 25%;
+}
+
+header .head-btn-left {
+  justify-content: start;
+}
+
+header .head-btn-right {
+  justify-content: end;
+}
+
+header button {
+  font-family: "Nanum Pen Script", cursive;
+}
+
+/* DiaryList.jsx */
+.diary-list .menu-wrapper {
+  margin-top: 20px;
+  margin-bottom: 30px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.diary-list .menu-wrapper .right-column {
+  flex-grow: 1;
+}
+
+.diary-list .menu-wrapper .right-column button {
+  width: 100%;
+}
+
+.diary-list .control-menu {
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 18px;
+}
+
+/* DiaryItem.jsx */
+.diary-item {
+  padding: 15px 0;
+  border-bottom: 1px solid #e2e2e2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.diary-item .emotion-img-wrapper {
+  cursor: pointer;
+  min-width: 120px;
+  height: 80px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.diary-item .emotion-img-wrapper_1 {
+  background-color: #64c964;
+}
+.diary-item .emotion-img-wrapper_2 {
+  background-color: #9dd772;
+}
+.diary-item .emotion-img-wrapper_3 {
+  background-color: #fdce17;
+}
+.diary-item .emotion-img-wrapper_4 {
+  background-color: #fd8446;
+}
+.diary-item .emotion-img-wrapper_5 {
+  background-color: #fd565f;
+}
+.diary-item .emotion-img-wrapper img {
+  width: 50%;
+}
+
+.diary-item .info-wrapper {
+  flex-grow: 1;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.diary-item .diary-date {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.diary-item .diary-content-preview {
+  font-size: 18px;
+}
+
+.diary-item .button-wrapper {
+  min-width: 70px;
 }
