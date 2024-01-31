@@ -40,31 +40,31 @@ const dummyData = [
     id: 1,
     emotion: 1,
     content: "오늘의 일기 1번",
-    date: 1706520318197,
+    date: 1706725418416,
   },
   {
     id: 2,
     emotion: 2,
     content: "오늘의 일기 2번",
-    date: 1706520318198,
+    date: 1706725418417,
   },
   {
     id: 3,
     emotion: 3,
     content: "오늘의 일기 3번",
-    date: 1706520318199,
+    date: 1706725418418,
   },
   {
     id: 4,
     emotion: 4,
     content: "오늘의 일기 4번",
-    date: 1706520318200,
+    date: 1706725418419,
   },
   {
     id: 5,
     emotion: 5,
     content: "오늘의 일기 5번",
-    date: 1706520318201,
+    date: 1706725418420,
   },
 ];
 
@@ -79,7 +79,7 @@ function App() {
       type: "CREATE",
       data: {
         id: dataId.current,
-        date: new Date(data).getTime(),
+        date: new Date(date).getTime(),
         content,
         emotion,
       },
@@ -107,19 +107,18 @@ function App() {
   };
   return (
     <DiaryStateContext.Provider value={data}>
-      <DiaryDispatchContext.Provider
-        value={{ onCreate, onRemove, onEdit }}
-      ></DiaryDispatchContext.Provider>
-      <BrowserRouter>
-        <div className="app">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/new" element={<New />} />
-            <Route path="/edit" element={<Edit />} />
-            <Route path="/diary/:id" element={<Diary />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <DiaryDispatchContext.Provider value={{ onCreate, onRemove, onEdit }}>
+        <BrowserRouter>
+          <div className="app">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/new" element={<New />} />
+              <Route path="/edit" element={<Edit />} />
+              <Route path="/diary/:id" element={<Diary />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </DiaryDispatchContext.Provider>
     </DiaryStateContext.Provider>
   );
 }
