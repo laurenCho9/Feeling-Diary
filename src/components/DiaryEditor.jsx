@@ -4,38 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Button from "./Button";
 import EmotionItem from "./EmotionItem";
-
-const emotionList = [
-  {
-    emotion_id: 1,
-    emotion_img: "/assets/emotion1.png",
-    emotion_descript: "완전 좋음",
-  },
-  {
-    emotion_id: 2,
-    emotion_img: "/assets/emotion2.png",
-    emotion_descript: "좋음",
-  },
-  {
-    emotion_id: 3,
-    emotion_img: "/assets/emotion3.png",
-    emotion_descript: "그럭저럭",
-  },
-  {
-    emotion_id: 4,
-    emotion_img: "/assets/emotion4.png",
-    emotion_descript: "나쁨",
-  },
-  {
-    emotion_id: 5,
-    emotion_img: "/assets/emotion5.png",
-    emotion_descript: "끔찍함",
-  },
-];
-
-const getStringDate = (date) => {
-  return date.toISOString().slice(0, 10);
-};
+import { getStringDate } from "../util/date";
+import { emotionList } from "../util/emotion";
 
 export default function DiaryEditor({ isEdit, originData }) {
   const [date, setDate] = useState(getStringDate(new Date()));

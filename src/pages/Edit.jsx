@@ -20,6 +20,7 @@ export default function Edit() {
       if (targetDiary) {
         setOriginData(targetDiary);
       } else {
+        alert("없는 일기입니다.");
         navigate("/", { replace: true });
       }
     }
