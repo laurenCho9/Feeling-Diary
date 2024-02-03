@@ -40,31 +40,31 @@ const dummyData = [
     id: 1,
     emotion: 1,
     content: "오늘의 일기 1번",
-    date: 1706725418416,
+    date: 1706984976513,
   },
   {
     id: 2,
     emotion: 2,
     content: "오늘의 일기 2번",
-    date: 1706725418417,
+    date: 1706984976514,
   },
   {
     id: 3,
     emotion: 3,
     content: "오늘의 일기 3번",
-    date: 1706725418418,
+    date: 1706984976515,
   },
   {
     id: 4,
     emotion: 4,
     content: "오늘의 일기 4번",
-    date: 1706725418419,
+    date: 1706984976516,
   },
   {
     id: 5,
     emotion: 5,
     content: "오늘의 일기 5번",
-    date: 1706725418420,
+    date: 1706984976517,
   },
 ];
 
@@ -113,7 +113,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/new" element={<New />} />
-              <Route path="/edit" element={<Edit />} />
+              <Route path="/edit/:id" element={<Edit />} />
               <Route path="/diary/:id" element={<Diary />} />
             </Routes>
           </div>
