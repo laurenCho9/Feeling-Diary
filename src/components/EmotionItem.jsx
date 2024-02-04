@@ -1,4 +1,6 @@
-export default function EmotionItem({
+import { memo } from "react";
+
+export default memo(function EmotionItem({
   emotion_id,
   emotion_img,
   emotion_descript,
@@ -18,4 +20,4 @@ export default function EmotionItem({
       <span>{emotion_descript}</span>
     </div>
   );
-}
+});
